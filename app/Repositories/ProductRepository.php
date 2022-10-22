@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Repositories\Contracts\ProductRepositoryContract;
@@ -29,5 +30,10 @@ class ProductRepository implements ProductRepositoryContract
             logs()->warning($e);
             return false;
         }
+    }
+
+    public function update(Product $product, UpdateProductRequest $request): bool
+    {
+        // TODO: Implement update() method.
     }
 }
