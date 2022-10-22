@@ -66,8 +66,8 @@
                     </li>
                     <li class="nav-item">
                         {{--                            <a class="dropdown-item" href="{{ route('admin.orders.index') }}">--}}
-                            {{--                                {{ __('All orders') }}--}}
-                            {{--                            </a>--}}
+                        {{--                                {{ __('All orders') }}--}}
+                        {{--                            </a>--}}
                     </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -96,5 +96,6 @@
         @yield('content')
     </main>
 </div>
+@stack('footer-scripts')
 </body>
 </html>
