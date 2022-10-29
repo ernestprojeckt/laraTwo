@@ -1,30 +1,30 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Factories;
 
-use App\Models\Category;
-use App\Models\Product;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CategoriesProductsSeeder extends Seeder
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
+ */
+class ProductFactory extends Factory
 {
     /**
-     * Run the database seeds.
+     * Define the model's default state.
      *
-     * @return void
+     * @return array<string, mixed>
      */
-    public function run()
+    public function definition()
     {
-        Category::factory(4)->create()->each(function($category) {
-            Product::factory(rand(2, 4))->make()->each(function($product) use ($category) {
-                $category->products()->create($product->attributesToArray());
-//                $product->create(array_merge(
-//                    $product->attributesToArray(),
-//                    ['category_id' => $category->id]
-//                ));
-                // Create new product row (in products table) with category_id = $category->id
-            });
-        });
+        return [
+            'title' => fake()->unique()->words(rand(1, 2), true),
+            'description' => fake()->paragraph(rand(1,5)),
+            'short_description' => fake()->words(5, true),
+            'SKU' => fake()->unique()->ean8(),
+            'price' => fake()->randomFloat(2, 10, 100),
+            'discount' => rand(0, 90),
+            'in_stock' => rand(0, 15),
+            'thumbnail' => fake()->imageUrl(category: 'cars', randomize: true)
+        ];
     }
 }
