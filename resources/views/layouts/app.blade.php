@@ -64,6 +64,9 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('account.index') }}">
+                                    {{ __('Account') }}
+                                </a>
                                 @if (auth()->user()->is_admin)
                                     <a href="{{ route('admin.dashboard') }}" class="dropdown-item">{{ __('Admin Dashboard') }}</a>
                                 @endif
@@ -90,5 +93,6 @@
 </div>
 <script src="{{ asset('js/iziToast.js') }}"></script>
 @include('vendor.lara-izitoast.toast')
+@stack('footer-scripts')
 </body>
 </html>
