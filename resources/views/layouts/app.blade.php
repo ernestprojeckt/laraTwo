@@ -91,8 +91,7 @@
         @yield('content')
     </main>
 </div>
-<script src="{{ asset('js/iziToast.js') }}"></script>
-@include('vendor.lara-izitoast.toast')
+<script src="{{}}"></script>
 @stack('footer-scripts')
 </body>
 </html>

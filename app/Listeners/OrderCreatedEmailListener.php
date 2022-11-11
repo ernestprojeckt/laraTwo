@@ -3,9 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\OrderCreatedEvent;
-use App\Notifications\OrderCreatedEmailNotification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Jobs\OrderCreatedJob;
+
 
 class OrderCreatedEmailListener
 {
@@ -27,6 +26,8 @@ class OrderCreatedEmailListener
      */
     public function handle(OrderCreatedEvent $event)
     {
-        $event->order->notify(new OrderCreatedEmailNotification);
+        OrderCreatedJob::dispatch($event->order)->onQueue('email'); // queue: default
     }
+
+
 }
