@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Helpers\Enums\RolesEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Helpers\Enums\RolesEnum;
 
 class Role extends Model
 {
@@ -13,7 +13,7 @@ class Role extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name'
+        'name',
     ];
 
     public function users()

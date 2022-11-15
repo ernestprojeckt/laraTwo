@@ -1,60 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('account.parts.nav')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <br>
-                <h3 class="text-center">{{ __('My Account ('. $user->fullName . ')') }}</h3>
-                <br>
+                <h3 class="text-center">{{ __('Wish List') }}</h3>
             </div>
-            {{--            @empty($user->telegram_id)--}}
-            {{--                @include('account.parts.telegram')--}}
-            {{--            @endempty--}}
-            <div class="col-md-12">
-                <div class="album py-5 bg-light">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <table class="table align-self-center">
-                                    <thead>
-                                    <tr>
-                                        <th class="text-center" scope="col"> Name </th>
-                                        <th class="text-center" scope="col"> Value <th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td scope="row" class="text-center">{{__('Role')}}</td>
-                                        <td class="text-center"> {{ $user->role->name }} </td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row" class="text-center">{{__('Name')}}</td>
-                                        <td class="text-center"> {{ $user->name }} </td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row" class="text-center">{{__('Surname')}}</td>
-                                        <td class="text-center"> {{ $user->surname }} </td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row" class="text-center">{{__('E-Mail')}}</td>
-                                        <td class="text-center"> {{ $user->email }} </td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row" class="text-center">{{__('Birthday')}}</td>
-                                        <td class="text-center"> {{ $user->birthdate }} </td>
-                                    </tr>
-                                    {{--                                    <tr>--}}
-                                    {{--                                        <td scope="row" class="text-center">{{__('Telegram ID')}}</td>--}}
-                                    {{--                                        <td class="text-center"> {{ $user->telegram_id }} </td>--}}
-                                    {{--                                    </tr>--}}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-12">
+                @if(Cart::instance('wishlist')->count() > 0)
+                    <table class="table table-light">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Product</th>
+                            <th>Old Price</th>
+                            <th>Current Price</th>
+                            <th>Available</th>
+                            <th>Remove</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        @each(
+                            'account.wishlist.parts.product_view',
+                            Cart::instance('wishlist')->content(),
+                            'row'
+                        )
+                        </tbody>
+                    </table>
+                @else
+                    <h3 class="text-center">There are no products in your wish list</h3>
+                @endif
             </div>
         </div>
     </div>

@@ -5,7 +5,6 @@ namespace App\Listeners;
 use App\Events\OrderCreatedEvent;
 use App\Jobs\OrderCreatedJob;
 
-
 class OrderCreatedEmailListener
 {
     /**
@@ -28,6 +27,4 @@ class OrderCreatedEmailListener
     {
         OrderCreatedJob::dispatch($event->order)->onQueue('email'); // queue: default
     }
-
-
 }

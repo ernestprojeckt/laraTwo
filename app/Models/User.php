@@ -25,7 +25,7 @@ class User extends Authenticatable
         'email',
         'password',
         'birthdate',
-        'role_id'
+        'role_id',
     ];
 
     /**
@@ -50,6 +50,7 @@ class User extends Authenticatable
     /**
      * Relation to roles table
      * belongsTo because have a role_id column
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function role()
@@ -60,6 +61,7 @@ class User extends Authenticatable
     /**
      * User has many orders.
      * Orders belong to user; (fk: user_id)
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function orders()
@@ -69,19 +71,20 @@ class User extends Authenticatable
 
     /**
      * Mutators $user->is_admin
+     *
      * @return Attribute
      */
     public function isAdmin(): Attribute
     {
         return new Attribute(
-            get: fn() => $this->role->id === Role::admin()->first()->id
+            get: fn () => $this->role->id === Role::admin()->first()->id
         );
     }
 
     public function fullName(): Attribute
     {
         return new Attribute(
-            get: fn() => ucfirst($this->attributes['name']) . ' ' . ucfirst($this->attributes['surname'])
+            get: fn () => ucfirst($this->attributes['name']).' '.ucfirst($this->attributes['surname'])
         );
     }
 }
